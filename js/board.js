@@ -5,24 +5,26 @@ function chooseLevel(level) {
         case '4':
             board = {
                 size: 4,
-                mines: 2
+                mines: 2,
+                maxLife: 1
             };
             break;
         case '8':
             board = {
                 size: 8,
-                mines: 12
+                mines: 12,
+                maxLife: 2
             };
             break;
         case '12':
             board = {
                 size: 12,
-                mines: 30
+                mines: 30,
+                maxLife: 3
             };
             break;
     }
     clearInterval(interval);
-    
     initGame();
 }
 
@@ -58,7 +60,7 @@ function renderBoard(mat, selector) {
                 if (currCell.isMarked) {
                     strHTML += FLAG
                 } else {
-                    strHTML += 'click'//צריך לשים רקע שונה במקום!
+                    strHTML += '🤷‍♂️'
                 }
                 strHTML += `</td>`
             } else {

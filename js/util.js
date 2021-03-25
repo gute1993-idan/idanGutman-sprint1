@@ -27,10 +27,13 @@ function getRandomInt(min, max) {
 var firstTime = new Date().getTime();
 
 function timer() {
-    var endTime = new Date().getTime()
-    var sec = parseInt((endTime - firstTime) / 1000)
-    var mili = (endTime - firstTime) % 1000
-    elTimer.innerText = sec + ':' + mili
+    var endTime = new Date().getTime();
+    var sec = parseInt((endTime - firstTime) / 1000);
+    var mili = (endTime - firstTime) % 1000;
+    elTimer.innerText = sec + ':' + mili;
+    bestTime = sec + mili;
+
 }
+
 
 

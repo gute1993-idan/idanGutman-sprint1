@@ -7,39 +7,44 @@ const FLAG = '🚩';
 
 var board = {
     size: 4,
-    mines: 2
+    mines: 2,
+    maxLife: 1
 };
 
 var gBoard;
 var firstTime;
-var elTimer;
+var elTimer = document.querySelector('h2 span');
+var elRestartBtn = document.querySelector('.restartBtn');
+var elGameOverMsg = document.querySelector('.gameOverMsg');
+var elLives = document.querySelector('.lives h2 span');
 var interval;
+var bestTime;
 
-var gGame = {
-    isOn: false,
-    shownCount: 0,
-    markedCount: 0,
-    secsPassed: 0,
-    isFirst: true,
-    life: 3
-}
+var gGame;
 
 
 function initGame() {
     gBoard = buildBoard(board.size);
     renderBoard(gBoard, '.board-container');
-    gGame.isOn = true;
-    gGame.isFirst = true
+    gGame = {
+        isOn: true,
+        shownCount: 0,
+        markedCount: 0,
+        secsPassed: 0,
+        isFirst: true,
+        life: board.maxLife
+    }
     clearInterval(interval);
-    elTimer.innerText = '0.000'
+    elTimer.innerText = '0.000';
+    elRestartBtn.innerText = NORMAL;
+    elGameOverMsg.style.display = 'none'
+    elLives.innerText = gGame.life
 }
 
 function win() {
     gGame.isOn = false;
     clearInterval(interval);
-    // restart btn
-    //happy smiley
-    //win sound - cards game
+    elRestartBtn.innerText = WIN;
 }
 
 function checkGameOver() {
@@ -52,15 +57,21 @@ function checkGameOver() {
 function gameOver() {
     gGame.isOn = false;
     clearInterval(interval);
-    // restart btn
-    //sed smiley
+    elRestartBtn.innerText = LOSE;
+    elGameOverMsg.style.display = 'block';
 }
 
 function restartBtn() {
+    board = {
+        size: 4,
+        mines: 2,
+        maxLife: 1
+    };
     initGame();
-
-
 }
+
+
+
 
 
 

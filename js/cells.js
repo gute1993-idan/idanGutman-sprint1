@@ -44,12 +44,12 @@ function cellClicked(elCell, i, j) {
     gGame.shownCount++;
 
     //if empty cell
-    if (gBoard[i][j].minesAroundCount === 0) {
-        expandShown(gBoard, i, j);
-    }
+    if (gBoard[i][j].minesAroundCount === 0) expandShown(gBoard, i, j);
 
     //if mine
     if (gBoard[i][j].isMine) gGame.life--;
+    elLives.innerText = gGame.life;
+
 
     //apdate DOM
     renderBoard(gBoard, '.board-container');
@@ -58,13 +58,14 @@ function cellClicked(elCell, i, j) {
 
 
 function expandShown(board, idxI, idxJ) {
+    if (board[idxI][idxJ].isMine) return
     for (var i = idxI - 1; i <= idxI + 1; i++) {
         if (i < 0 || i >= board.length) continue;
         for (var j = idxJ - 1; j <= idxJ + 1; j++) {
             if (i === idxI && j === idxJ) continue;
             if (j < 0 || j >= board.length) continue;
             var neighborCell = board[i][j];
-            if (!neighborCell.isMine && !neighborCell.isShown) {
+            if (!neighborCell.isMine && !neighborCell.isShown && !neighborCell.isMarked) {
                 neighborCell.isShown = true;
                 gGame.shownCount++;
                 if (neighborCell.minesAroundCount === 0) expandShown(board, i, j);// recursive: bonus
@@ -91,4 +92,8 @@ function addMines(firstI, firstJ) {
         var idxJ = iANDj % gBoard.length
         gBoard[idxI][idxJ].isMine = true;
     }
+}
+
+function color(elCell) {
+    console.log(elCell);
 }
