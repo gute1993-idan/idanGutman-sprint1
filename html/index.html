@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Mine Sweeper</title>
+</head>
+
+<body onload="initGame()">
+
+    <h1>Mine Sweeper</h1>
+
+    <div class="timer">
+        <h2>Time: <span>0.000</span></h2>
+    </div>
+
+    <div class="lives">
+        <p>💖💖💖</p>
+    </div>
+
+
+    <button class="4" onclick="chooseLevel('4')">Beginner</button>
+    <button class="8" onclick="chooseLevel('8')">Medium</button>
+    <button class="12" onclick="chooseLevel('12')">Expert</button>
+
+    <button onclick="restartBtn()" class="restartBtn">😁</button>
+
+    <div class="board-container"></div>
+
+    <div>
+        <h3>Game over! click on the smiley</h3>
+    </div>
+
+    <script src="../js/util.js"></script>
+    <script src="../js/board.js"></script>
+    <script src="../js/cells.js"></script>
+    <script src="../js/game.js"></script>
+</body>
+
+</html>
