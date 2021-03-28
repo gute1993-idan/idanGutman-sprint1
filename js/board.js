@@ -28,7 +28,7 @@ function chooseLevel(level) {
     initGame();
 }
 
-// creat board model
+
 function buildBoard(size) {
     var mat = [];
     for (var i = 0; i < size; i++) {
@@ -46,7 +46,7 @@ function buildBoard(size) {
     return mat;
 }
 
-//print board dom
+
 function renderBoard(mat, selector) {
     var strHTML = '<table border="0"><tbody>';
     for (var i = 0; i < mat.length; i++) {
@@ -56,7 +56,7 @@ function renderBoard(mat, selector) {
             var cellId = `cell-${i}-${j}`;
             if (!currCell.isShown) {
                 strHTML += `<td id="${cellId}" oncontextmenu ="cellMarked(${i},${j}); return false;" 
-                 onclick="cellClicked(this,${i},${j})">`
+                 onclick="cellClicked(${i},${j})">`
                 if (currCell.isMarked) {
                     strHTML += FLAG
                 } else {

@@ -1,6 +1,5 @@
 
 //craet array with nums
-
 function createArray(size) {
     var number = []
     for (var i = 0; i < size; i++) {
@@ -30,9 +29,8 @@ function timer() {
     var endTime = new Date().getTime();
     var sec = parseInt((endTime - firstTime) / 1000);
     var mili = (endTime - firstTime) % 1000;
-    elTimer.innerText = sec + ':' + mili;
-    bestTime = sec + mili;
-
+    elTimer.innerText = sec + '.' + mili;
+    bestTime = sec + '.' + mili;
 }
 
 

@@ -12,13 +12,19 @@ var board = {
 };
 
 var gBoard;
-var firstTime;
 var elTimer = document.querySelector('h2 span');
-var elRestartBtn = document.querySelector('.restartBtn');
-var elGameOverMsg = document.querySelector('.gameOverMsg');
+var elRestartBtn = document.querySelector('.restart-btn');
+var elGameOverMsg = document.querySelector('.game-over-msg');
 var elLives = document.querySelector('.lives h2 span');
+var elBestTime = document.querySelector('.best-time span');
+var elSafeBtnSpan = document.querySelector('.safe-btn span')
 var interval;
+//best time
+var startTime;
+var endTime;
+var gameTime;
 var bestTime;
+
 
 var gGame;
 
@@ -30,21 +36,26 @@ function initGame() {
         isOn: true,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0,
         isFirst: true,
-        life: board.maxLife
+        life: board.maxLife,
+        count: 3
     }
     clearInterval(interval);
     elTimer.innerText = '0.000';
     elRestartBtn.innerText = NORMAL;
     elGameOverMsg.style.display = 'none'
-    elLives.innerText = gGame.life
+    elLives.innerText = gGame.life;
+    elSafeBtnSpan.innerText = gGame.count;
+    isBestTimeRefresh();
+    
 }
 
 function win() {
     gGame.isOn = false;
     clearInterval(interval);
     elRestartBtn.innerText = WIN;
+    gameTime = (Date.now() - startTime) / 1000;
+    isBestTime(gameTime);
 }
 
 function checkGameOver() {
@@ -61,6 +72,7 @@ function gameOver() {
     elGameOverMsg.style.display = 'block';
 }
 
+
 function restartBtn() {
     board = {
         size: 4,
@@ -70,12 +82,22 @@ function restartBtn() {
     initGame();
 }
 
+function isBestTimeRefresh() {
+    if (localStorage.getItem('bestTime') !== null) {
+        elBestTime = document.querySelector('.best-time span');
+        elBestTime.innerText = localStorage.getItem('bestTime');
+    }
+}
 
-
-
-
-
-
+function isBestTime(gameTime) {
+    if (!localStorage.getItem('bestTime')) {
+        localStorage.setItem('bestTime', gameTime);
+        elBestTime.innerText = bestTime;
+    } else if (gameTime < localStorage.getItem('bestTime')) {
+        localStorage.setItem('bestTime', gameTime);
+        elBestTime.innerText = bestTime;
+    }
+}
 
 
 
